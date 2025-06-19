@@ -82,4 +82,9 @@ const generateRandomTheme = () => {
   const randomIndex = Math.floor(Math.random() * conversationThemes.length);
   currentTheme.value = conversationThemes[randomIndex];
 };
+
+// Setup page meta
+useHead({
+  title: 'Talking theme decider'
+})
 </script>
