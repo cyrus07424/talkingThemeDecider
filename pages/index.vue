@@ -7,7 +7,7 @@
         </h1>
         
         <!-- Tab Navigation -->
-        <UTabs :items="tabItems" v-model="activeTab" class="mb-8">
+        <UTabs :items="tabItems" v-model="activeTab" :default-value="'random'" class="mb-8">
           <!-- Random Selection Tab -->
           <template #random="{ item }">
             <div class="py-4">
@@ -17,7 +17,7 @@
                   @click="generateRandomTheme"
                   size="lg"
                   color="primary"
-                  class="px-8 py-4 text-lg font-semibold"
+                  class="px-8 py-4 text-lg font-semibold cursor-pointer"
                 >
                   ランダムで会話テーマを決定
                 </UButton>
@@ -56,7 +56,7 @@
                       @click="generateRandomTheme"
                       variant="outline"
                       size="md"
-                      class="px-6 py-2"
+                      class="px-6 py-2 cursor-pointer"
                     >
                       別のテーマを生成 / 生成其他主题
                     </UButton>
@@ -113,11 +113,11 @@
               
               <div v-if="themeHistory.length > 0" class="text-center mt-6">
                 <UButton 
-                  @click="clearHistory"
-                  variant="outline"
+                  @click="clearHistoryWithConfirmation"
+                  variant="solid"
                   color="red"
                   size="sm"
-                  class="px-4 py-2"
+                  class="px-4 py-2 cursor-pointer"
                 >
                   履歴をクリア / 清除历史
                 </UButton>
@@ -232,6 +232,14 @@ const clearHistory = () => {
   saveHistory([]);
 };
 
+// Clear history with confirmation dialog
+const clearHistoryWithConfirmation = () => {
+  const isConfirmed = confirm('本当に履歴を削除しますか？ / 确定要清除历史记录吗？');
+  if (isConfirmed) {
+    clearHistory();
+  }
+};
+
 // Smart random theme generation
 const generateRandomTheme = () => {
   let availableIndices: number[] = [];
@@ -261,8 +269,11 @@ const generateRandomTheme = () => {
 };
 
 // Initialize history on mount
-onMounted(() => {
+onMounted(async () => {
   themeHistory.value = loadHistory();
+  // Ensure the random tab is selected by default
+  await nextTick();
+  activeTab.value = 'random';
 });
 
 // Setup page meta
