@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+/* Custom button cursor styling */
+button {
+  cursor: pointer !important;
+}
+
+/* Ensure all UButton components have pointer cursor */
+.button {
+  cursor: pointer !important;
+}
