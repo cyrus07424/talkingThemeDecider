@@ -12,7 +12,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/ui": "^3.3.2",
+    "@nuxt/ui": "^3.3.3",
     "jet-vermillion-generator": "^0.1.1",
     "nuxt": "^4.0.3",
     "puppeteer": "^24.17.1",
