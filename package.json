@@ -14,7 +14,7 @@
   "dependencies": {
     "@nuxt/ui": "^4.8.2",
     "jet-vermillion-generator": "^0.1.1",
-    "nuxt": "^4.2.1",
+    "nuxt": "^4.4.7",
     "puppeteer": "^25.1.0",
     "typescript": "^6.0.3",
     "vue": "^3.5.35",
